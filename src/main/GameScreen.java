@@ -10,9 +10,9 @@ public class GameScreen extends JPanel {
     
     //private BufferedImage img;
     private ArrayList<BufferedImage> sprites;
-    Random rand;
+    private Random rand;
 
-    public GameScreen(BufferedImage img) {
+    public GameScreen(BufferedImage img,BufferedImage img2) {
         rand = new Random();
         sprites = new ArrayList<>();
         for(int i = 0; i < 8;i++) {
@@ -20,6 +20,7 @@ public class GameScreen extends JPanel {
                 sprites.add(img.getSubimage((j*32), (i*32), 32, 32));
             }
         }
+        sprites.add(img2.getSubimage(128, 128, 64, 64));
     }
 
     public void paintComponent(Graphics g) {
@@ -29,7 +30,9 @@ public class GameScreen extends JPanel {
                 g.drawImage(sprites.get(rand.nextInt(64)), (j*32)-32, (i*32)-32, null);
             }
         }
-        repaint();
+        g.drawImage(sprites.get(sprites.size()-1), (4*32)-32, (4*32)-32, null); 
     }
+
+    
 
 }
