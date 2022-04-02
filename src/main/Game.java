@@ -7,8 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Game extends JFrame implements Runnable{
 
-    private BufferedImage img;
-    private BufferedImage img2; 
+    private BufferedImage img; 
     private Thread gameThread;
     //private int updates;
     //private long lastTimeUPS;
@@ -25,7 +24,7 @@ public class Game extends JFrame implements Runnable{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        GameScreen gameScreen = new GameScreen(img,img2);
+        GameScreen gameScreen = new GameScreen(img);
         this.add(gameScreen);
 
     }
@@ -35,8 +34,7 @@ public class Game extends JFrame implements Runnable{
     private void importImg() {
         
         try {
-            img = ImageIO.read(new File("ttld/res/txTileset.png"));
-            img2 = ImageIO.read(new File("ttld/res/txProps.png"));
+            img = ImageIO.read(new File("res/txTileset.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,16 +53,7 @@ public class Game extends JFrame implements Runnable{
         gameThread = new Thread(this) {};
         gameThread.start();
     }
-    /** 
-    private void callUPS() {
-        if(System.currentTimeMillis() - lastTimeUPS >=1000)
-        {
-            System.out.println("Updates: " + updates);
-            updates = 0;
-            lastTimeUPS = System.currentTimeMillis();
-        }
-    }
-    */
+
     @Override
     public void run() {
         int frames = 0; //FPS limiter
