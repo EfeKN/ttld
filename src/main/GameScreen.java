@@ -12,7 +12,7 @@ public class GameScreen extends JPanel {
     private ArrayList<BufferedImage> sprites;
     private Random rand;
 
-    public GameScreen(BufferedImage img,BufferedImage img2) {
+    public GameScreen(BufferedImage img) {
         rand = new Random();
         sprites = new ArrayList<>();
         for(int i = 0; i < 8;i++) {
@@ -20,7 +20,6 @@ public class GameScreen extends JPanel {
                 sprites.add(img.getSubimage((j*32), (i*32), 32, 32));
             }
         }
-        sprites.add(img2.getSubimage(128, 128, 64, 64));
     }
 
     public void paintComponent(Graphics g) {

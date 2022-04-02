@@ -8,10 +8,8 @@ import javax.imageio.ImageIO;
 public class Game extends JFrame implements Runnable{
 
     private BufferedImage img; 
-    private Thread gameThread;
-    //private int updates;
-    //private long lastTimeUPS;
 
+    private Thread gameThread;
     final double FPS = 120.0;
     final double UPS = 60.0;
 
@@ -34,7 +32,7 @@ public class Game extends JFrame implements Runnable{
     private void importImg() {
         
         try {
-            img = ImageIO.read(new File("res/txTileset.png"));
+            img = ImageIO.read(new File("res/tileset_compressed.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,32 +52,32 @@ public class Game extends JFrame implements Runnable{
         gameThread.start();
     }
 
+    //This part I don't understand it limits the frame rate to 120FPS but I have no idea how it works or why it divides different numbers
     @Override
     public void run() {
         int frames = 0; //FPS limiter
         int updates = 0;
 
         long lastTimeCheck = System.currentTimeMillis() ;
-        long lastFrame = System.nanoTime(); //FPS limiter
-        long lastUpdate = System.nanoTime();
+        long now = System.nanoTime(); //FPS limiter
 
         double timePerFrame = 1000000000.0/FPS; //FPS limiter
         double timePerUpdate = 1000000000.0/UPS; //FPS limiter
-
+        //Graphical output and information
         while(true) {
             //Render
-            if(System.nanoTime() - lastFrame >= timePerFrame) {
-                lastFrame = System.nanoTime();
+            if(System.nanoTime() - now >= timePerFrame) {
+                now = System.nanoTime();
                 repaint(); 
                 frames++;
             }
             //Update
-            if(System.nanoTime() - lastUpdate >= timePerUpdate) {
-                lastUpdate = System.nanoTime();
+            if(System.nanoTime() - now >= timePerUpdate) { 
+                now = System.nanoTime();
                 updates++;
             }
             //checking FPS and UPS
-            if(System.currentTimeMillis() - lastTimeCheck >= 1000) {
+            if(System.currentTimeMillis() - lastTimeCheck >= 1000) { //ensures 1 second has passed
                 System.out.println("FPS : " + frames + " | UPS : " + updates);
                 frames = 0;
                 updates = 0;
