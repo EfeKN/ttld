@@ -2,34 +2,34 @@ package main;
 
 import java.util.Random;
 import javax.swing.JPanel;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.awt.*;
+//import java.awt.image.BufferedImage;
+//import java.util.ArrayList;
 
 public class GameScreen extends JPanel {
     
-    //private BufferedImage img;
-    private ArrayList<BufferedImage> sprites;
-    private Random rand;
+    private Game game;
+    private Render render;
+    private Dimension size;
 
-    public GameScreen(BufferedImage img) {
-        rand = new Random();
-        sprites = new ArrayList<>();
-        for(int i = 0; i < 8;i++) {
-            for(int j = 0; j < 8; j++) {
-                sprites.add(img.getSubimage((j*32), (i*32), 32, 32));
-            }
-        }
+    public GameScreen(Game game) {
+        this.game = game;
+        render = new Render(this);    
+        //sprites = new ArrayList<>();
+        setPanelSize(); //inhibits hiding pixels
+    }
+
+    private void setPanelSize() {
+        size = new Dimension(1024,576);
+        setSize(size);
+        setMinimumSize(size);
+        setPreferredSize(size);
+        setMaximumSize(size);
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for(int i = 1; i <=18; i++) {
-            for(int j = 1; j <= 32; j++) {
-                g.drawImage(sprites.get(rand.nextInt(64)), (j*32)-32, (i*32)-32, null);
-            }
-        }
-        g.drawImage(sprites.get(sprites.size()-1), (4*32)-32, (4*32)-32, null); 
+        render.render(g); 
     }
 
     

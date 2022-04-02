@@ -1,47 +1,53 @@
 package main;
 
+import input.*;
 import javax.swing.JFrame;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import javax.imageio.ImageIO;
+//import java.awt.image.BufferedImage;
+//import java.io.*;
+//import javax.imageio.ImageIO;
 
 public class Game extends JFrame implements Runnable{
 
-    private BufferedImage img; 
+    private GameScreen gameScreen;
+    
 
     private Thread gameThread;
+    
     final double FPS = 120.0;
     final double UPS = 60.0;
 
-    public Game() {
+    private MyMouseListener myMouseListener;
+    private KeyboardListener myKeyboardListener;
 
-        importImg();
+    public Game() {
 
         setSize(1024,576);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        GameScreen gameScreen = new GameScreen(img);
+        gameScreen = new GameScreen(this);
         this.add(gameScreen);
+        pack();
 
     }
 
-    //Importing res files
+    private void initInputs() {
+        myKeyboardListener = new KeyboardListener();
+        myMouseListener = new MyMouseListener();
 
-    private void importImg() {
-        
-        try {
-            img = ImageIO.read(new File("res/tileset_compressed.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        addKeyListener(myKeyboardListener);
+        addMouseMotionListener(myMouseListener);
+        addMouseListener(myMouseListener);
+
+        requestFocus(); //?????????????????????????????????????????
     }
 
     //try the game here
 
     public static void main(String[] args) { 
         Game game = new Game();
+        game.initInputs();
         game.start();
     }
 
@@ -58,22 +64,26 @@ public class Game extends JFrame implements Runnable{
         int frames = 0; //FPS limiter
         int updates = 0;
 
+        long lastFrame = System.nanoTime();
+        long lastUpdate = System.nanoTime();
         long lastTimeCheck = System.currentTimeMillis() ;
-        long now = System.nanoTime(); //FPS limiter
 
         double timePerFrame = 1000000000.0/FPS; //FPS limiter
         double timePerUpdate = 1000000000.0/UPS; //FPS limiter
+
+        long now; //FPS limiter
         //Graphical output and information
         while(true) {
+            now = System.nanoTime();
             //Render
-            if(System.nanoTime() - now >= timePerFrame) {
-                now = System.nanoTime();
+            if(now - lastFrame >= timePerFrame) {
+                lastFrame = now;
                 repaint(); 
                 frames++;
             }
             //Update
-            if(System.nanoTime() - now >= timePerUpdate) { 
-                now = System.nanoTime();
+            if(now - lastUpdate >= timePerUpdate) { 
+                lastUpdate = now;
                 updates++;
             }
             //checking FPS and UPS
