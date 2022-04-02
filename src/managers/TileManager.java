@@ -4,6 +4,8 @@ import objects.Tile;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import helpz.LoadSave;
+
 public class TileManager {
       
       public BufferedImage atlas;
@@ -24,7 +26,7 @@ public class TileManager {
       }
 
       private void loadAtlas() {
-
+            atlas = LoadSave.getSpriteAtlas();
       }
 
       public BufferedImage getSprite(int id) {
