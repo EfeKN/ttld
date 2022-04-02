@@ -1,6 +1,6 @@
 package main;
 
-import java.util.Random;
+//import java.util.Random;
 import javax.swing.JPanel;
 import java.awt.*;
 //import java.awt.image.BufferedImage;
@@ -9,12 +9,12 @@ import java.awt.*;
 public class GameScreen extends JPanel {
     
     private Game game;
-    private Render render;
+    
     private Dimension size;
 
     public GameScreen(Game game) {
         this.game = game;
-        render = new Render(this);    
+            
         //sprites = new ArrayList<>();
         setPanelSize(); //inhibits hiding pixels
     }
@@ -29,7 +29,7 @@ public class GameScreen extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        render.render(g); 
+        game.getRender().render(g); 
     }
 
     

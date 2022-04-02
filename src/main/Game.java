@@ -1,5 +1,6 @@
 package main;
 
+import scenes.*;
 import input.*;
 import javax.swing.JFrame;
 //import java.awt.image.BufferedImage;
@@ -9,7 +10,6 @@ import javax.swing.JFrame;
 public class Game extends JFrame implements Runnable{
 
     private GameScreen gameScreen;
-    
 
     private Thread gameThread;
     
@@ -19,18 +19,30 @@ public class Game extends JFrame implements Runnable{
     private MyMouseListener myMouseListener;
     private KeyboardListener myKeyboardListener;
 
-    public Game() {
+    private Render render;
+    private Menu menu;
+    private Playing playing;
+    private Settings settings;
 
+    public Game() {
         setSize(1024,576);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
-        gameScreen = new GameScreen(this);
+        initClasses();  
         this.add(gameScreen);
         pack();
-
     }
+
+    private void initClasses() {
+        render = new Render(this);
+        gameScreen = new GameScreen(this);
+        menu = new Menu(this);
+        playing = new Playing(this);
+        settings = new Settings(this);
+    }
+
+
 
     private void initInputs() {
         myKeyboardListener = new KeyboardListener();
@@ -94,5 +106,23 @@ public class Game extends JFrame implements Runnable{
                 lastTimeCheck = System.currentTimeMillis();
             }
         }
+    }
+
+    //Getters and Setters
+
+    public Render getRender() {
+        return render;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Playing getPlaying() {
+        return playing;
+    }
+
+    public Settings getSettings() {
+        return settings;
     }
 }
