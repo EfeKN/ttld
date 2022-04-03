@@ -57,4 +57,28 @@ public class ObstacleManager {
             g.drawImage(getSprite(34), x, y+32, null);
             g.drawImage(getSprite(35), x+16, y+32, null);
       }
+
+      public void createDestroyedCar(Graphics g, int xCord, int yCord, String color) {
+            int i = 0;
+            if(color.equals("blue"))
+            {
+                  i = 8;
+            }
+            int x = xCord*16;
+            int y = yCord*16;
+            g.drawImage(getSprite(128+i), x, y, null);
+            g.drawImage(getSprite(129+i), x+16, y, null);
+            g.drawImage(getSprite(144+i), x, y+16, null);
+            g.drawImage(getSprite(145+i), x+16, y+16, null);
+      }
+
+      public void createRock(Graphics g, int xCord, int yCord, int rockType) {
+            if(rockType<0&&rockType>4)
+            {
+                  rockType = 4;
+            }
+            int x = xCord*16;
+            int y = yCord*16;
+            g.drawImage(getSprite(64 + rockType), x, y, null);
+      }
 }

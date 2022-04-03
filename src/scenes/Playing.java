@@ -34,6 +34,14 @@ public class Playing extends GameScene implements SceneMethods{
             obstacleManager.createLampPost(g,25,14);
             obstacleManager.createLampPost(g,29,14);
             obstacleManager.createDestroyedLampPost(g,33,14);
+
+            obstacleManager.createDestroyedCar(g, 0, 0, "blue");
+            obstacleManager.createRock(g, 20, 20,0);
+            obstacleManager.createRock(g, 21, 20,1);
+            obstacleManager.createRock(g, 22, 20,2);
+            obstacleManager.createRock(g, 23, 20,3);
+            obstacleManager.createRock(g, 24, 20,4);
+            obstacleManager.createRock(g, 25, 20,5);
 	}
       
 }
