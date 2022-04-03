@@ -36,7 +36,7 @@ public class ObstacleManager {
             return atlas.getSubimage((xCord*16)-16, (yCord*16)-16, 16, 16);
       }
 
-      public void creatLampPost(Graphics g, int xCord, int yCord) {
+      public void createLampPost(Graphics g, int xCord, int yCord) {
             int x = xCord*16;
             int y = yCord*16;
             g.drawImage(getSprite(0), x, y, null);
@@ -45,5 +45,16 @@ public class ObstacleManager {
             g.drawImage(getSprite(17), x+16, y+16, null);
             g.drawImage(getSprite(32), x, y+32, null);
             g.drawImage(getSprite(33), x+16, y+32, null);
+      }
+
+      public void createDestroyedLampPost(Graphics g, int xCord, int yCord) {
+            int x = xCord*16;
+            int y = yCord*16;
+            g.drawImage(getSprite(2), x, y, null);
+            g.drawImage(getSprite(3), x+16, y, null);
+            g.drawImage(getSprite(18), x, y+16, null);
+            g.drawImage(getSprite(19), x+16, y+16, null);
+            g.drawImage(getSprite(34), x, y+32, null);
+            g.drawImage(getSprite(35), x+16, y+32, null);
       }
 }

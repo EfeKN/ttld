@@ -28,12 +28,12 @@ public class Playing extends GameScene implements SceneMethods{
                         g.drawImage(tileManager.getSprite(id),x*16,y*16,null);
                   }
             }
-            obstacleManager.creatLampPost(g,13,14);
-            obstacleManager.creatLampPost(g,17,14);
-            obstacleManager.creatLampPost(g,21,14);
-            obstacleManager.creatLampPost(g,25,14);
-            obstacleManager.creatLampPost(g,29,14);
-            obstacleManager.creatLampPost(g,33,14);
+            obstacleManager.createLampPost(g,13,14);
+            obstacleManager.createLampPost(g,17,14);
+            obstacleManager.createDestroyedLampPost(g,21,14);
+            obstacleManager.createLampPost(g,25,14);
+            obstacleManager.createLampPost(g,29,14);
+            obstacleManager.createDestroyedLampPost(g,33,14);
 	}
       
 }
