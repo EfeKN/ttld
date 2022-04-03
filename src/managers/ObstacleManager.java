@@ -58,7 +58,7 @@ public class ObstacleManager {
             g.drawImage(getSprite(35), x+16, y+32, null);
       }
 
-      public void createDestroyedCar(Graphics g, int xCord, int yCord, String color) {
+      public void createDestroyedCar(Graphics g, int xCord, int yCord, String color, int direction) {
             int i = 0;
             if(color.equals("blue"))
             {
@@ -66,19 +66,38 @@ public class ObstacleManager {
             }
             int x = xCord*16;
             int y = yCord*16;
-            g.drawImage(getSprite(128+i), x, y, null);
-            g.drawImage(getSprite(129+i), x+16, y, null);
-            g.drawImage(getSprite(144+i), x, y+16, null);
-            g.drawImage(getSprite(145+i), x+16, y+16, null);
+            g.drawImage(getSprite(128+i+2*direction), x, y, null);
+            g.drawImage(getSprite(129+i+2*direction), x+16, y, null);
+            g.drawImage(getSprite(144+i+2*direction), x, y+16, null);
+            g.drawImage(getSprite(145+i+2*direction), x+16, y+16, null);
       }
 
       public void createRock(Graphics g, int xCord, int yCord, int rockType) {
-            if(rockType<0&&rockType>4)
+            if(rockType<0||rockType>4)
             {
-                  rockType = 4;
+                  rockType = 0;
             }
             int x = xCord*16;
             int y = yCord*16;
             g.drawImage(getSprite(64 + rockType), x, y, null);
       }
+
+      public void createBrick(Graphics g, int xCord, int yCord, int brickType) {
+            if(brickType<0||brickType>=4)
+            {
+                  brickType = 0;
+            }
+            int x = xCord*16;
+            int y = yCord*16;
+            g.drawImage(getSprite(84 + brickType), x, y, null);
+      }
+
+      public void createBarrel(Graphics g, int xCord, int yCord, int barrelType) {
+            if(barrelType<0||barrelType>1)
+            {
+                  barrelType = 0;
+            }
+            g.drawImage(getSprite(48+barrelType), xCord*16, yCord*16, null);
+      }
+
 }
