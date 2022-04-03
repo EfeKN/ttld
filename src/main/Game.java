@@ -56,7 +56,6 @@ public class Game extends JFrame implements Runnable{
     }
 
     //try the game here
-
     public static void main(String[] args) { 
         Game game = new Game();
         game.initInputs();
