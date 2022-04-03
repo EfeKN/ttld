@@ -2,9 +2,9 @@ package objects;
 
 import java.awt.image.BufferedImage;
 
-public class Tile extends Objects{
+public class Obstacles extends Objects {
 
-      public Tile(BufferedImage sprite) {
+      public Obstacles(BufferedImage sprite) {
             super(sprite);
       }
 }
