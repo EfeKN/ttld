@@ -10,3 +10,5 @@ Created classes Obstacles and Tile which inherits Objects class
 added TileManager and ObstacleManager so as to make the tilemap creation procedure more easy
 
 -------------- 4.04.2022 --------------
+
+Added menu buttons
