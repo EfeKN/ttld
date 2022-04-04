@@ -69,5 +69,28 @@ public class Playing extends GameScene implements SceneMethods{
             obstacleManager.createBarrel(g, 51, 35, 1);
             obstacleManager.createBarrel(g, 52, 35, 2);
 	}
+
+      @Override
+      public void mouseClicked(int x, int y) {
+            
+            
+      }
+
+      @Override
+      public void mouseMoved(int x, int y) {
+      
+            
+      }
+
+      @Override
+      public void mousePressed(int x, int y) {
+            
+      }
+
+      @Override
+      public void mouseReleased(int x, int y) {
+            
+            
+      }
       
 }

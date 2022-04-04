@@ -1,37 +1,51 @@
 package scenes;
 
+import static main.GameStates.*;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 import main.Game;
+import ui.MyButton;
 
 public class Menu extends GameScene implements SceneMethods{
 
       private BufferedImage img;
       private ArrayList<BufferedImage> sprites;
-      private Random rand;  
+      
+      private MyButton bPlaying, bSettings, bQuit;
 
       public Menu(Game game) {
             super(game);
-            rand = new Random();
             importImg();
             loadSprites();
+            initButtons();
+      }
+
+      private void initButtons() {
+            int w = 150;
+            int h = 50;
+            int d = 20;
+            bPlaying = new MyButton("Play", getGame().getWidth()/2-w/2, 100, w, h);
+            bSettings = new MyButton("Settings", getGame().getWidth()/2-w/2, 100 + h + d, w, h);
+            bQuit = new MyButton("Quit", getGame().getWidth()/2-w/2, 100 + 2*h + 2*d, w, h);
       }
 
       @Override
       public void render(Graphics g) {
-            for(int i = 1; i <=36; i++) {
-                  for(int j = 1; j <= 64; j++) {
-                  g.drawImage(sprites.get(rand.nextInt(32)), (j*16)-16, (i*16)-16, null);
-                  }
-            }
+            drawButtons(g);
       } 
+
+      private void drawButtons(Graphics g) {
+            bPlaying.draw(g);
+            bSettings.draw(g);
+            bQuit.draw(g);
+      }
 
       private void importImg() {
             
@@ -51,4 +65,36 @@ public class Menu extends GameScene implements SceneMethods{
                 }
             }
       }
+
+	@Override
+	public void mouseClicked(int x, int y) {
+		
+            if(bPlaying.getBounds().contains(x,y))
+            {
+                  setGameState(PLAYING);
+            }
+		
+	}
+
+	public void mouseMoved(int x, int y) {
+            bPlaying.setMouseOver(false);
+            if(bPlaying.getBounds().contains(x,y))
+            {
+                  bPlaying.setMouseOver(true);
+            }
+	}
+
+	@Override
+	public void mousePressed(int x, int y) {
+            if(bPlaying.getBounds().contains(x,y))
+            {
+                  bPlaying.setMOusePressed(true);
+            }
+		
+	}
+
+	@Override
+	public void mouseReleased(int x, int y) {
+		bPlaying.resetBooleans();
+	}
 }

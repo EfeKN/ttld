@@ -1,5 +1,5 @@
 package main;
-
+import input.*;
 //import java.util.Random;
 import javax.swing.JPanel;
 import java.awt.*;
@@ -9,14 +9,28 @@ import java.awt.*;
 public class GameScreen extends JPanel {
     
     private Game game;
-    
+
+    private MyMouseListener myMouseListener;
+    private KeyboardListener myKeyboardListener;
+
     private Dimension size;
 
     public GameScreen(Game game) {
         this.game = game;
-            
+        initInputs();
         //sprites = new ArrayList<>();
         setPanelSize(); //inhibits hiding pixels
+    }
+
+    public void initInputs() {
+        myKeyboardListener = new KeyboardListener();
+        myMouseListener = new MyMouseListener(game);
+
+        addKeyListener(myKeyboardListener);
+        addMouseMotionListener(myMouseListener);
+        addMouseListener(myMouseListener);
+
+        requestFocus(); 
     }
 
     private void setPanelSize() {

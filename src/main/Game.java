@@ -1,7 +1,7 @@
 package main;
 
 import scenes.*;
-import input.*;
+//import input.*;
 import javax.swing.JFrame;
 //import java.awt.image.BufferedImage;
 //import java.io.*;
@@ -15,9 +15,6 @@ public class Game extends JFrame implements Runnable{
     
     final double FPS = 120.0;
     final double UPS = 60.0;
-
-    private MyMouseListener myMouseListener;
-    private KeyboardListener myKeyboardListener;
 
     private Render render;
     private Menu menu;
@@ -41,24 +38,10 @@ public class Game extends JFrame implements Runnable{
         playing = new Playing(this);
         settings = new Settings(this);
     }
-
-
-
-    private void initInputs() {
-        myKeyboardListener = new KeyboardListener();
-        myMouseListener = new MyMouseListener();
-
-        addKeyListener(myKeyboardListener);
-        addMouseMotionListener(myMouseListener);
-        addMouseListener(myMouseListener);
-
-        requestFocus(); //?????????????????????????????????????????
-    }
-
     //try the game here
     public static void main(String[] args) { 
         Game game = new Game();
-        game.initInputs();
+        game.gameScreen.initInputs();
         game.start();
     }
 
