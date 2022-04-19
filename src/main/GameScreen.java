@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.*;
 //import java.awt.image.BufferedImage;
 //import java.util.ArrayList;
+import java.io.IOException;
 
 public class GameScreen extends JPanel {
     
@@ -43,7 +44,11 @@ public class GameScreen extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        game.getRender().render(g); 
+        try {
+            game.getRender().render(g);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
     }
 
     

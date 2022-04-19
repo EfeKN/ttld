@@ -1,15 +1,8 @@
 package main;
 
 import java.awt.Graphics;
-/** 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
 
-import javax.imageio.ImageIO;
-*/
 public class Render {
       
       private Game game;
@@ -18,7 +11,7 @@ public class Render {
             this.game = game;
       }
 
-      public void render(Graphics g) {
+      public void render(Graphics g) throws IOException {
             switch(GameStates.gameState) {
                   case MENU:
                         game.getMenu().render(g);
@@ -27,7 +20,7 @@ public class Render {
                         game.getPlaying().render(g);
                         break;
                   case SETTINGS:
-                  game.getSettings().render(g);
+                        game.getSettings().render(g);
                         break;
             }
       }

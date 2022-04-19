@@ -78,9 +78,20 @@ public class Menu extends GameScene implements SceneMethods{
 
 	public void mouseMoved(int x, int y) {
             bPlaying.setMouseOver(false);
+            bSettings.setMouseOver(false);
+            bQuit.setMouseOver(false);
+
             if(bPlaying.getBounds().contains(x,y))
             {
                   bPlaying.setMouseOver(true);
+            }
+            else if(bSettings.getBounds().contains(x,y))
+            {
+                  bSettings.setMouseOver(true);
+            }
+            else if(bQuit.getBounds().contains(x,y))
+            {
+                  bQuit.setMouseOver(true);
             }
 	}
 
@@ -88,7 +99,15 @@ public class Menu extends GameScene implements SceneMethods{
 	public void mousePressed(int x, int y) {
             if(bPlaying.getBounds().contains(x,y))
             {
-                  bPlaying.setMOusePressed(true);
+                  bPlaying.setMousePressed(true);
+            }
+            else if(bSettings.getBounds().contains(x,y))
+            {
+                  bSettings.setMousePressed(true);
+            }
+            else if(bQuit.getBounds().contains(x,y))
+            {
+                  bQuit.setMousePressed(true);
             }
 		
 	}
@@ -96,5 +115,7 @@ public class Menu extends GameScene implements SceneMethods{
 	@Override
 	public void mouseReleased(int x, int y) {
 		bPlaying.resetBooleans();
+            bSettings.resetBooleans();
+            bQuit.resetBooleans();
 	}
 }
