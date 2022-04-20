@@ -15,11 +15,9 @@ public class MyGdxGame extends ApplicationAdapter {
 	TextureRegion[] animationFramesWalk, animationFramesMelee;
 	Animation<TextureRegion> animationWalk, animationMelee;
 	float elapsedTime;
-	int i;
 	
 	@Override
 	public void create () {
-		i =0;
 		batch = new SpriteBatch();
 		img = new Texture("Scarab.png");
 		animationFramesWalk = new TextureRegion[4];
@@ -27,9 +25,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		
 		TextureRegion[][] tmpFrames = TextureRegion.split(img, 16, 16);
 		loadFrames(tmpFrames);
-		animationWalk = new Animation<TextureRegion>(1f/30f, animationFramesWalk);
-		animationMelee = new Animation<TextureRegion>(1f/30f, animationFramesMelee);
-		//animation = new Animation(1f/15f, animationFrames);
+		animationWalk = new Animation<TextureRegion>(1f/8f, animationFramesWalk);
+		animationMelee = new Animation<TextureRegion>(1f/8f, animationFramesMelee);
 	}
 	
 	private void loadFrames(TextureRegion[][] tmpFrames) {
@@ -51,11 +48,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0.0f,0,0.0f,1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(animationWalk.getKeyFrame(elapsedTime, true),i++,0);
-		batch.draw(animationMelee.getKeyFrame(elapsedTime, true),i++,16);
+		batch.draw(animationWalk.getKeyFrame(elapsedTime, true),0,0);
+		batch.draw(animationMelee.getKeyFrame(elapsedTime, true),0,16);
 		batch.end();
-		if(i>=600)
-			i=0;
 	}
 	
 	@Override
