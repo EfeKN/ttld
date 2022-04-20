@@ -25,7 +25,8 @@ public class Settings extends GameScene implements SceneMethods{
             } catch (IOException e) {
                   e.printStackTrace();
             }
-            g.drawImage(okanTekman,0,0,null);
+      
+            g.drawImage(okanTekman.getScaledInstance(1024, 768, 1),0,0,null);
             //g.fillRect(0, 0, 1000, 500);
 	}
 
